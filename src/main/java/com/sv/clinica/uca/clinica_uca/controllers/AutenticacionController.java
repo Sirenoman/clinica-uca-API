@@ -37,4 +37,14 @@ public class AutenticacionController {
 		
 		return new ResponseEntity<>(new DatosJWTtoken(JwtToken), HttpStatus.OK);
 	}
+	
+	@PostMapping("/validateToke")
+	public ResponseEntity<?> validateToken(@RequestBody String token){
+		try {
+			tokenService.getSubject(token);
+			return new ResponseEntity<>(true, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }
