@@ -19,7 +19,7 @@ import com.sv.clinica.uca.clinica_uca.services.TokenService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/auth")
 @CrossOrigin("*")
 public class AutenticacionController {
 
@@ -28,7 +28,7 @@ public class AutenticacionController {
 	@Autowired
 	private TokenService tokenService;
 	
-	@PostMapping
+	@PostMapping("/login")
 	public ResponseEntity<?> autenticarUsuario(@RequestBody @Valid DatosAutenticacionUsuario datosUsuario){
 		//System.out.println("Carnet: "+datosUsuario.carnet()+" Clave: "+datosUsuario.clave());
 		var authToken = new UsernamePasswordAuthenticationToken(datosUsuario.carnet(), datosUsuario.clave());
