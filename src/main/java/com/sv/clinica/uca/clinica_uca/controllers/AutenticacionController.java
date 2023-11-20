@@ -38,7 +38,7 @@ public class AutenticacionController {
 		return new ResponseEntity<>(new DatosJWTtoken(JwtToken), HttpStatus.OK);
 	}
 	
-	@PostMapping("/validateToke")
+	@PostMapping("/validateToken")
 	public ResponseEntity<?> validateToken(@RequestBody String token){
 		try {
 			tokenService.getSubject(token);
