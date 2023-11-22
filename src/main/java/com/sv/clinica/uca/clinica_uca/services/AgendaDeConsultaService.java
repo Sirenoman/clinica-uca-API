@@ -104,7 +104,7 @@ public class AgendaDeConsultaService {
 	
 	// METODO PARA RETORNAR CITA DE UN PACIENTE POR SU ID
 	public Consulta buscarCitaPaciente(Long id) {
-		return consultaRepo.getReferenceByPacienteId(id);
+		return consultaRepo.getReferenceById(id);
 	}
 	
 	/** 

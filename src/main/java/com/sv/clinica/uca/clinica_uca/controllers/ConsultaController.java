@@ -65,7 +65,7 @@ public class ConsultaController {
 		return ResponseEntity.ok(agendaConsultaService.buscarPorIdPaciente(id, paginacion).map(DatosConsultas::new));	
 	}
 	
-	// DETALLAR CITA DE UN PACIENTE.
+	// DETALLAR CITA DE UN PACIENTE POR ID DE CITA.
 	
 	@GetMapping("/cita/{id}")
 	public ResponseEntity<?> retornarCitaDePaciente(@PathVariable Long id){

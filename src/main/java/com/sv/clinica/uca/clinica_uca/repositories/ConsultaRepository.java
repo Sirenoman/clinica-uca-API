@@ -20,6 +20,6 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long>{
 	Page<Consulta> findAllByPacienteId(Long idPaciente, Pageable paginacion);
 	
 	// QUERY PERSONALIZADA PARA BUSCAR CITA EN ESPECIFICO POR ID PACIENTE
-	Consulta getReferenceByPacienteId(Long idPaciente);
+	//Consulta getReferenceByPacienteId(Long idPaciente);
 
 }
