@@ -67,7 +67,7 @@ public class ConsultaController {
 	
 	// DETALLAR CITA DE UN PACIENTE.
 	
-	@GetMapping("/{id}")
+	@GetMapping("/cita/{id}")
 	public ResponseEntity<?> retornarCitaDePaciente(@PathVariable Long id){
 		Consulta consulta = agendaConsultaService.buscarCitaPaciente(id);
 		return new ResponseEntity<>(new DatosDetalleConsulta(consulta), HttpStatus.OK);
