@@ -3,6 +3,8 @@ package com.sv.clinica.uca.clinica_uca.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sv.clinica.uca.clinica_uca.dto.DatosAgendarConsulta;
@@ -93,6 +95,16 @@ public class AgendaDeConsultaService {
 		var consulta = consultaRepo.getReferenceById(datos.idConsulta());
 		// AGREGA MOTIVO DE CANCELACION
 		consulta.cancelar(datos.motivo());
+	}
+	
+	// METODO PARA RETORNAR TODA UNA PAGINACION DE CITAS ACORDE A ID DE PACIENTE ENVIADO
+	public Page<Consulta> buscarPorIdPaciente(Long id, Pageable paginacion){
+		return consultaRepo.findAllByPacienteId(id, paginacion);
+	}
+	
+	// METODO PARA RETORNAR CITA DE UN PACIENTE POR SU ID
+	public Consulta buscarCitaPaciente(Long id) {
+		return consultaRepo.getReferenceByPacienteId(id);
 	}
 	
 	/** 
