@@ -34,7 +34,7 @@ public class SecurityConfigurations {
 	    //Route filter
 	    http.authorizeHttpRequests(auth -> 
 	    	auth
-	    		.requestMatchers("auth/**").permitAll()
+	    		.requestMatchers("/auth/**").permitAll()
 	    		.requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
 	    		.anyRequest().authenticated()
 	    );
