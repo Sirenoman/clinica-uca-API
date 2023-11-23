@@ -34,7 +34,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/medicos")
 @SecurityRequirement(name = "bearer-key")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class MedicoController {
 	
 	@Autowired

@@ -26,15 +26,33 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
+
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/consultas")
 @SecurityRequirement(name = "bearer-key")
-@CrossOrigin("*")
 public class ConsultaController {
 
 	@Autowired
 	private AgendaDeConsultaService agendaConsultaService;
 	
+	// OBTENER TODAS LAS CITAS POR ID DE PACIENTE
+
+	@GetMapping("/{id}")
+	public ResponseEntity<?> retornarCitasPaciente(@PathVariable Long id,
+			@PageableDefault(page = 0, size = 10) Pageable paginacion) {
+		System.out.println(id);
+		// RETORNO DE PAGINACION DE CITAS POR ID PACIENTE
+		return ResponseEntity.ok(agendaConsultaService.buscarPorIdPaciente(id, paginacion).map(DatosConsultas::new));
+	}
+
+	// DETALLAR CITA DE UN PACIENTE POR ID DE CITA.
+
+	@GetMapping("/cita/{id}")
+	public ResponseEntity<?> retornarCitaDePaciente(@PathVariable Long id) {
+		Consulta consulta = agendaConsultaService.buscarCitaPaciente(id);
+		return new ResponseEntity<>(new DatosDetalleConsulta(consulta), HttpStatus.OK);
+	}
 	
 	@PostMapping
 	@Transactional
@@ -54,22 +72,5 @@ public class ConsultaController {
 		agendaConsultaService.cancelar(datos);
 		
 		return new ResponseEntity<>(new MessageDTO("Consulta cancelada"), HttpStatus.OK);
-	}
-	
-	// OBTENER TODAS LAS CITAS POR ID DE PACIENTE
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<?> retornarCitasPaciente(@PathVariable Long id,
-			@PageableDefault(page=0, size=10) Pageable paginacion){
-		// RETORNO DE PAGINACION DE CITAS POR ID PACIENTE
-		return ResponseEntity.ok(agendaConsultaService.buscarPorIdPaciente(id, paginacion).map(DatosConsultas::new));	
-	}
-	
-	// DETALLAR CITA DE UN PACIENTE POR ID DE CITA.
-	
-	@GetMapping("/cita/{id}")
-	public ResponseEntity<?> retornarCitaDePaciente(@PathVariable Long id){
-		Consulta consulta = agendaConsultaService.buscarCitaPaciente(id);
-		return new ResponseEntity<>(new DatosDetalleConsulta(consulta), HttpStatus.OK);
 	}
 }
