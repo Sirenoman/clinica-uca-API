@@ -83,4 +83,12 @@ public class PacienteController {
 		
 		return new ResponseEntity<>(new DatosDetalladoPaciente(paciente), HttpStatus.OK);
 	}
+	
+	// DETALLAR DATOS DE UN PACIENTE POR SU DOCUMENTOID
+	@GetMapping("/documento/{documentoId}")
+	public ResponseEntity<?> detallarPacienteDoc(@PathVariable String documentoId){
+		Paciente paciente = pacienteRepository.getReferenceByDocumentoId(documentoId);
+		
+		return new ResponseEntity<>(new DatosDetalladoPaciente(paciente), HttpStatus.OK);
+	}
 }
