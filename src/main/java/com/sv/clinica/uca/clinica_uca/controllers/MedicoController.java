@@ -79,5 +79,13 @@ public class MedicoController {
 		Medico medico = medicoRepository.getReferenceById(id);
 		return new ResponseEntity<>(new DatosDetalladoMedico(medico), HttpStatus.OK);
 	}
+	
+	// BUSCAR MEDICOS POR ESPECIALIDAD
+	@GetMapping("/lista/{especialidad}")
+	public ResponseEntity<?> retornarMedicosByEspecialidad(@PathVariable String especialidad,
+			@PageableDefault(size = 10) Pageable paginacion){
+		// MEDIANTE QUERY PERSONALIZADA
+		return ResponseEntity.ok(medicoRepository.findByEspecialidad(especialidad, paginacion).map(DatosListadoMedico::new));
+	}
 
 }
