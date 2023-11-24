@@ -10,11 +10,14 @@ public record DatosDetalleConsulta(
 		String nombrePaciente,
 		Long idMedico,
 		String nombreMedico,
-		@JsonFormat(pattern = "dd/MM/yyyy HH:mm") LocalDateTime fecha) {
+		@JsonFormat(pattern = "dd/MM/yyyy HH:mm") LocalDateTime fecha,
+		Especialidad especialidad,
+		String anotaciones) {
 	
 	public DatosDetalleConsulta(Consulta consulta) {
 		this(consulta.getId(), consulta.getPaciente().getNombre(), consulta.getMedico().getId(),
-				 consulta.getMedico().getNombre(), consulta.getFecha());
+				 consulta.getMedico().getNombre(), consulta.getFecha(), 
+				 consulta.getMedico().getEspecialidad(), "Sin anotaciones");
 	}
 
 }
