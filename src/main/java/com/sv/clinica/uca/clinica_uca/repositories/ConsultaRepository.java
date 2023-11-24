@@ -19,9 +19,9 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long>{
 	
 	// QUERY Personalizada para buscar todas las consutlas por IdPaciente
 	@Query("""
-			select * from consultas
-			where paciente_id:idPaciente
-			order by fecha desc;
+			select * from consultas c
+			where c.paciente_id = :idPaciente
+			order by c.fecha desc;
 			""")
 	Page<Consulta> findAllByPacienteIdAndOrdenByFecha(Long idPaciente, Pageable paginacion);
 	
