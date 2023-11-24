@@ -34,6 +34,6 @@ public interface MedicoRepository extends JpaRepository<Medico, Long>{
 	Boolean findActivoByid(Long idMedico);
 	
 	// QUERY PERSONALIZADA PARA BUSCAR MEDICO POR ESPECIALIDAD
-	Page<Medico> findByEspecialidad(String especialidad, Pageable paginacion);
+	Page<Medico> findAllByEspecialidad(String especialidad, Pageable paginacion);
 
 }

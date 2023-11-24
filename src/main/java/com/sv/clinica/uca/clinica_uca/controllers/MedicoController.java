@@ -85,7 +85,7 @@ public class MedicoController {
 	public ResponseEntity<?> retornarMedicosByEspecialidad(@PathVariable String especialidad,
 			@PageableDefault(size = 10) Pageable paginacion){
 		// MEDIANTE QUERY PERSONALIZADA
-		return ResponseEntity.ok(medicoRepository.findByEspecialidad(especialidad, paginacion).map(DatosListadoMedico::new));
+		return ResponseEntity.ok(medicoRepository.findAllByEspecialidad(especialidad, paginacion).map(DatosListadoMedico::new));
 	}
 
 }
