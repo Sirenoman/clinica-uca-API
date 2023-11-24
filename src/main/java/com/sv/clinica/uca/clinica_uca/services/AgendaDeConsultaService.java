@@ -99,7 +99,7 @@ public class AgendaDeConsultaService {
 	
 	// METODO PARA RETORNAR TODA UNA PAGINACION DE CITAS ACORDE A ID DE PACIENTE ENVIADO
 	public Page<Consulta> buscarPorIdPaciente(Long id, Pageable paginacion){
-		return consultaRepo.findAllByPacienteIdAndOrdenByFecha(id, paginacion);
+		return consultaRepo.findAllByPacienteI(id, paginacion);
 	}
 	
 	// METODO PARA RETORNAR CITA DE UN PACIENTE POR SU ID

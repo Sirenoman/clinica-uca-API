@@ -18,12 +18,7 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long>{
 	Boolean existsByMedicoIdAndFecha(Long idMedico, LocalDateTime fecha);
 	
 	// QUERY Personalizada para buscar todas las consutlas por IdPaciente
-	@Query("""
-			select * from consultas c
-			where c.paciente_id = :idPaciente
-			order by c.fecha desc;
-			""")
-	Page<Consulta> findAllByPacienteIdAndOrdenByFecha(Long idPaciente, Pageable paginacion);
+	Page<Consulta> findAllByPacienteI(Long idPaciente, Pageable paginacion);
 	
 	// QUERY PERSONALIZADA PARA BUSCAR CITA EN ESPECIFICO POR ID PACIENTE
 	//Consulta getReferenceByPacienteId(Long idPaciente);
