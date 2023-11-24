@@ -40,7 +40,7 @@ public class ConsultaController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<?> retornarCitasPaciente(@PathVariable Long id,
-			@PageableDefault(page = 0, size = 50) Pageable paginacion) {
+			@PageableDefault(page = 0, size = 50, sort= {"fecha"}) Pageable paginacion) {
 		System.out.println(id);
 		// RETORNO DE PAGINACION DE CITAS POR ID PACIENTE
 		return ResponseEntity.ok(agendaConsultaService.buscarPorIdPaciente(id, paginacion).map(DatosConsultas::new));
